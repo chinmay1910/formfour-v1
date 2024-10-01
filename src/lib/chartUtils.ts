@@ -81,11 +81,13 @@ export const chartColors = {
      stroke: "stroke-fuchsia-500",
      fill: "fill-fuchsia-500",
      text: "text-fuchsia-500",
+   },
 } as const satisfies {
   [color: string]: {
     [key in ColorUtility]: string
   }
 }
+
 
 export type AvailableChartColorsKeys = keyof typeof chartColors
 
