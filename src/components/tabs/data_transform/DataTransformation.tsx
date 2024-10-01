@@ -1018,8 +1018,8 @@ const DataTransfer: React.FC = () => {
                           ))}
                         </tbody>
                       </table>
-                      <Button variant="light" onClick={addSteppedLineInput}>Add Row</Button>
-                      <Button variant="primary" onClick={generateSteppedLineData}>Generate Stepped Line</Button>
+                      <Button variant="light" className="ml-4" onClick={addSteppedLineInput}>Add Row</Button>
+                      <Button variant="primary" className="ml-4" onClick={generateSteppedLineData}>Generate Stepped Line</Button>
                     </div>
                   </div>
                 </TabsContent>
