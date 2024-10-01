@@ -66,7 +66,7 @@ const LegendItem = ({
         className={cx(
           "h-[3px] w-3.5 shrink-0 rounded-full",
           getColorClassName(color, "bg"),
-          activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
+          activeLegend && activeLegend !== name ? "opacity-20" : "opacity-100",
         )}
         aria-hidden={true}
       />
@@ -78,7 +78,7 @@ const LegendItem = ({
           "text-gray-700 dark:text-gray-300",
           hasOnValueChange &&
             "group-hover:text-gray-900 dark:group-hover:text-gray-50",
-          activeLegend && activeLegend !== name ? "opacity-40" : "opacity-100",
+          activeLegend && activeLegend !== name ? "opacity-20" : "opacity-100",
         )}
       >
         {name}

@@ -161,13 +161,13 @@ const triggerStyles = tv({
     // text color
     "text-gray-900 dark:text-gray-50",
     // placeholder color
-    "placeholder-gray-400 dark:placeholder-gray-500",
+    "placeholder-gray-400 dark:placeholder-gray-300",
     // hover
     "hover:bg-gray-50 hover:dark:bg-gray-950/50",
     // disabled
     "disabled:pointer-events-none",
     "disabled:bg-gray-100 disabled:text-gray-400",
-    "disabled:dark:border-gray-800 disabled:dark:bg-gray-800 disabled:dark:text-gray-500",
+    "disabled:dark:border-gray-800 disabled:dark:bg-gray-800 disabled:dark:text-gray-400",
     // focus
     focusInput,
     // invalid (optional)
@@ -198,12 +198,12 @@ const Trigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
           className={cx(triggerStyles({ hasError }), className)}
           {...props}
         >
-          <RiCalendar2Fill className="size-5 shrink-0 text-gray-400 dark:text-gray-600" />
+          <RiCalendar2Fill className="size-5 shrink-0 text-gray-400 dark:text-gray-400" />
           <span className="flex-1 overflow-hidden text-ellipsis whitespace-nowrap text-left text-gray-900 dark:text-gray-50">
             {children ? (
               children
             ) : placeholder ? (
-              <span className="text-gray-400 dark:text-gray-600">
+              <span className="text-gray-400 dark:text-gray-400">
                 {placeholder}
               </span>
             ) : null}

@@ -71,8 +71,8 @@ const AssetPerformanceIndicators = () => {
         <div className="flex gap-4 flex-grow">
                 <div className="flex gap-3 w-[45%]">
                     <div className="flex gap-7">
-                        <div>
-                            <img src={motorImage} alt="Motor" style={{ height: '140px' }} />
+                        <div className='rounded-lg'>
+                            <img src={motorImage} alt="Motor" style={{ height: '140px', borderRadius: '8px' }} className='rounded-lg' />
                         </div>
                         <div className="flex flex-col gap-3">
                             <div>
@@ -88,6 +88,9 @@ const AssetPerformanceIndicators = () => {
                                 </ProgressCircle>
                                 <ProgressCircle variant="success" value={24} radius={28} strokeWidth={5}>
                                     <span className="text-xs font-medium text-gray-900 dark:text-gray-50">MTBF</span>
+                                </ProgressCircle>
+                                <ProgressCircle variant="success" value={60} radius={28} strokeWidth={5}>
+                                    <span className="text-xs font-medium text-gray-900 dark:text-gray-50">MTTR</span>
                                 </ProgressCircle>
                             </div>
                         </div>
@@ -115,7 +118,27 @@ const AssetPerformanceIndicators = () => {
                         </div>
                         <div className='flex-col gap-3'>
                             <p className="p-light text-xs">
-                                Downtime
+                                On time
+                            </p>
+                            <h3>
+                                74:30
+                            </h3>
+                        </div>
+                        <div className='h-5 border '>
+                        </div>
+                        <div className='flex-col gap-3'>
+                            <p className="p-light text-xs">
+                                Stop time
+                            </p>
+                            <h3>
+                                08:52
+                            </h3>
+                        </div>
+                        <div className='h-5 border '>
+                        </div>
+                        <div className='flex-col gap-3'>
+                            <p className="p-light text-xs">
+                                PMC
                             </p>
                             <h3>
                                 04:30
@@ -125,40 +148,20 @@ const AssetPerformanceIndicators = () => {
                         </div>
                         <div className='flex-col gap-3'>
                             <p className="p-light text-xs">
-                                Downtime
+                                MTTR
                             </p>
                             <h3>
-                                04:30
+                                00:38
                             </h3>
                         </div>
                         <div className='h-5 border '>
                         </div>
                         <div className='flex-col gap-3'>
                             <p className="p-light text-xs">
-                                Downtime
+                                MTBF
                             </p>
                             <h3>
-                                04:30
-                            </h3>
-                        </div>
-                        <div className='h-5 border '>
-                        </div>
-                        <div className='flex-col gap-3'>
-                            <p className="p-light text-xs">
-                                Downtime
-                            </p>
-                            <h3>
-                                04:30
-                            </h3>
-                        </div>
-                        <div className='h-5 border '>
-                        </div>
-                        <div className='flex-col gap-3'>
-                            <p className="p-light text-xs">
-                                Downtime
-                            </p>
-                            <h3>
-                                04:30
+                                01:20
                             </h3>
                         </div>
                     </div>

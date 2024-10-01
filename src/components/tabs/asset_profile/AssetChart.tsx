@@ -5,23 +5,25 @@ import { AreaChart } from "../../../common/AreaChart";
 import FFTAreaChartStack from "../../FFTAreaChartStack";
 import FFTImplement from "../../FFTImplement";
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from "../../../common/Table";
+import { cx } from "../../../lib/utils";
+import { badgeVariants } from "../../../common/Badge";
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 const data = [
-  { date: 'Jan 23', Organic: 232, Sponsored: 0, Affiliate: 49, }, { date: 'Feb 23', Organic: 241, Sponsored: 0, Affiliate: 61, }, { date: 'Mar 23', Organic: 291, Sponsored: 0, Affiliate: 55, }, { date: 'Apr 23', Organic: 101, Sponsored: 0, Affiliate: 21, }, { date: 'May 23', Organic: 318, Sponsored: 0, Affiliate: 66, }, { date: 'Jun 23', Organic: 205, Sponsored: 0, Affiliate: 69, }, { date: 'Jul 23', Organic: 372, Sponsored: 0, Affiliate: 55, }, { date: 'Aug 23', Organic: 341, Sponsored: 0, Affiliate: 74, }, { date: 'Sep 23', Organic: 387, Sponsored: 120, Affiliate: 190, }, { date: 'Oct 23', Organic: 220, Sponsored: 0, Affiliate: 89, }, { date: 'Nov 23', Organic: 372, Sponsored: 0, Affiliate: 44, }, { date: 'Dec 23', Organic: 321, Sponsored: 0, Affiliate: 93, },
+  { date: 'Jan 23', OverallRMS: 232, Sponsored: 0, Affiliate: 49, }, { date: 'Feb 23', OverallRMS: 241, Sponsored: 0, Affiliate: 61, }, { date: 'Mar 23', OverallRMS: 291, Sponsored: 0, Affiliate: 55, }, { date: 'Apr 23', OverallRMS: 101, Sponsored: 0, Affiliate: 21, }, { date: 'May 23', OverallRMS: 318, Sponsored: 0, Affiliate: 66, }, { date: 'Jun 23', OverallRMS: 205, Sponsored: 0, Affiliate: 69, }, { date: 'Jul 23', OverallRMS: 372, Sponsored: 0, Affiliate: 55, }, { date: 'Aug 23', OverallRMS: 341, Sponsored: 0, Affiliate: 74, }, { date: 'Sep 23', OverallRMS: 387, Sponsored: 120, Affiliate: 190, }, { date: 'Oct 23', OverallRMS: 220, Sponsored: 0, Affiliate: 89, }, { date: 'Nov 23', OverallRMS: 372, Sponsored: 0, Affiliate: 44, }, { date: 'Dec 23', OverallRMS: 321, Sponsored: 0, Affiliate: 93, },
 ];
 
 const summary = [
-  { name: 'Organic', value: 3273, }, { name: 'Sponsored', value: 120, }, { name: 'Affiliate', value: 866, },
+  { name: 'Overall RMS', value: 3273, }, { name: 'Sponsored', value: 120, }, { name: 'Affiliate', value: 866, },
 ];
 
 const valueFormatter = (number) =>
-  `${Intl.NumberFormat('us').format(number).toString()}`;
+  `{Intl.NumberFormat('us').format(number).toString()}`;
 
 const statusColor = {
-  Organic: 'bg-blue-500',
+  OverallRMS: 'bg-blue-500',
   Sponsored: 'bg-violet-500',
   Affiliate: 'bg-fuchsia-500',
 };
@@ -374,34 +376,34 @@ const data1 = [
 const summary1 = [
   {
     name: 'ETF Shares Vital',
-    value: '$21,349.36',
-    invested: '$19,698.65',
-    cashflow: '$14,033.74',
-    gain: '+$11,012.39',
-    realized: '+$177.48',
-    dividends: '+$490.97',
+    value: '21,349.36',
+    invested: '19,698.65',
+    cashflow: '14,033.74',
+    gain: '+11,012.39',
+    realized: '+177.48',
+    dividends: '+490.97',
     bgColor: 'bg-blue-500',
     changeType: 'positive',
   },
   {
     name: 'Vitainvest Core',
-    value: '$25,943.43',
-    invested: '$23,698.65',
-    cashflow: '$11,033.74',
-    gain: '+$3,012.39',
-    realized: '+$565.41',
-    dividends: '+$290.97',
+    value: '25,943.43',
+    invested: '23,698.65',
+    cashflow: '11,033.74',
+    gain: '+3,012.39',
+    realized: '+565.41',
+    dividends: '+290.97',
     bgColor: 'bg-violet-500',
     changeType: 'positive',
   },
   {
     name: 'iShares Tech Growth',
-    value: '$9,443.46',
-    invested: '$14,698.65',
-    cashflow: '$2,033.74',
-    gain: '-$5,012.39',
-    realized: '-$634.42',
-    dividends: '-$990.97',
+    value: '9,443.46',
+    invested: '14,698.65',
+    cashflow: '2,033.74',
+    gain: '-5,012.39',
+    realized: '-634.42',
+    dividends: '-990.97',
     bgColor: 'bg-fuchsia-500',
     changeType: 'negative',
   },
@@ -484,8 +486,8 @@ const AssetChart = () => {
             <Tabs defaultValue="tab1">
               <TabsList variant="solid">
                 <TabsTrigger value="tab1">Vibration Trend</TabsTrigger>
-                <TabsTrigger value="tab2">Temperature Trend</TabsTrigger>
-                <TabsTrigger value="tab3">3D Spectrogram</TabsTrigger>
+                <TabsTrigger value="tab2">3D Spectrogram</TabsTrigger>
+                <TabsTrigger value="tab3">Temperature Trend</TabsTrigger>
                 <TabsTrigger value="tab4">Health Indicators</TabsTrigger>
               </TabsList>
               <div className="ml-2 mt-4">
@@ -521,7 +523,7 @@ const AssetChart = () => {
                       'Vitainvest Core',
                       'iShares Tech Growth',
                     ]}
-                    colors={['blue', 'violet', 'fuchsia']}
+                    colors={['rose8', 'red', 'rose']}
                     valueFormatter={valueFormatter}
                     showYAxis={false}
                     showLegend={true}
@@ -533,25 +535,25 @@ const AssetChart = () => {
                     <TableHead>
                       <TableRow className="border-b border-tremor-border dark:border-dark-tremor-border">
                         <TableHeaderCell className="text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Name
+                          Feature
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Value
+                          Overall RMS
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Invested
+                          SD
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Cashflow
+                          Remark
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Gain
+                          Max
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Realized
+                          Min
                         </TableHeaderCell>
                         <TableHeaderCell className="text-right text-tremor-content-strong dark:text-dark-tremor-content-strong">
-                          Dividends
+                          Kurtosis
                         </TableHeaderCell>
                       </TableRow>
                     </TableHead>
@@ -569,12 +571,17 @@ const AssetChart = () => {
                           </TableCell>
                           <TableCell className="text-right">{item.value}</TableCell>
                           <TableCell className="text-right">{item.invested}</TableCell>
-                          <TableCell className="text-right">{item.cashflow}</TableCell>
+                          <TableCell className="text-right"><div className="">
+                            <a className={cx(badgeVariants({ variant: "success" }), "cursor-pointer")}>
+                              Functional
+                            </a>
+                          </div>
+                          </TableCell>
                           <TableCell className="text-right">
                             <span
                               className={classNames(
                                 item.changeType === 'positive'
-                                  ? 'text-emerald-700 dark:text-emerald-500'
+                                  ? 'text-green-700 dark:text-emerald-500'
                                   : 'text-red-700 dark:text-red-500',
                               )}
                             >
@@ -649,8 +656,8 @@ const AssetChart = () => {
                     <LineChart
                       data={data}
                       index="date"
-                      categories={['Organic', 'Sponsored', 'Affiliate']}
-                      colors={['blue', 'violet', 'fuchsia']}
+                      categories={['Overall RMS', 'Sponsored', 'Affiliate']}
+                      colors={['orange', 'red', 'neutral']}
                       valueFormatter={valueFormatter}
 
                       showLegend={false}
@@ -685,8 +692,8 @@ const AssetChart = () => {
                     <LineChart
                       data={data}
                       index="date"
-                      categories={['Organic', 'Sponsored', 'Affiliate']}
-                      colors={['blue', 'violet', 'fuchsia']}
+                      categories={['Overall RMS', 'Sponsored', 'Affiliate']}
+                      colors={['rose8', 'red', 'rose']}
                       valueFormatter={valueFormatter}
 
                       showLegend={false}
@@ -721,8 +728,8 @@ const AssetChart = () => {
                     <LineChart
                       data={data}
                       index="date"
-                      categories={['Organic', 'Sponsored', 'Affiliate']}
-                      colors={['blue', 'violet', 'fuchsia']}
+                      categories={['Overall RMS', 'Sponsored', 'Affiliate']}
+                      colors={['rose8', 'red', 'rose']}
                       valueFormatter={valueFormatter}
 
                       showLegend={false}

@@ -11,37 +11,61 @@ import { ChartPie, LayoutList, FileInput } from "lucide-react";
 import { UserProfileDesktop } from "../../UserProfile";
 const sampleData = [
   {
-    name: "Factory A (32)",
+    name: "AGCM Sangali (32)",
     children: [
       {
-        name: "Section 1",
+        name: "VSI Crusher A",
         children: [
-          { name: "Asset 1.1", status: "normal" },
-          { name: "Asset 1.2", status: "alert" },
-          { name: "Asset 1.3", status: "normal" },
-          { name: "Asset 1.4", status: "alert" },
-          { name: "Asset 1.5", status: "normal" },
-          { name: "Asset 1.6", status: "alert" },
+          { name: "Main Rotor", status: "normal" },
+          { name: "Pulley DE", status: "alert" },
+          { name: "Motor Housing", status: "normal" },
+          { name: "Main Body", status: "alert" },
+          { name: "Structure Base", status: "normal" },
+          { name: "Hopper Top", status: "alert" },
         ]
       },
       {
-        name: "Section 2",
+        name: "Vibratory Screen",
         children: [
-          { name: "Asset 2.1", status: "warning" },
-          { name: "Asset 2.2", status: "offline" },
-          { name: "Asset 1.3", status: "normal" },
-          { name: "Asset 1.4", status: "alert" },
-          { name: "Asset 1.5", status: "normal" },
-          { name: "Asset 1.6", status: "alert" },
+          { name: "RHS Top", status: "warning" },
+          { name: "RHS Bottom", status: "offline" },
+          { name: "LHS Top", status: "normal" },
+          { name: "LHS Bottom", status: "alert" },
+          { name: "Base Structure", status: "normal" },
+          { name: "Motor Drive", status: "alert" },
         ]
       }
     ]
   },
   {
-    name: "Factory B",
+    name: "AGCM Pune",
     children: [
       {
-        name: "Section 3",
+        name: "Jaw Crusher",
+        children: [
+          { name: "Asset 3.1", status: "normal" },
+          { name: "Asset 3.2", status: "alert" },
+          { name: "Asset 1.3", status: "normal" },
+          { name: "Asset 1.4", status: "alert" },
+          { name: "Asset 1.5", status: "normal" },
+          { name: "Asset 1.6", status: "alert" },
+
+        ]
+      },
+      {
+        name: "Cone Crusher",
+        children: [
+          { name: "Asset 3.1", status: "normal" },
+          { name: "Asset 3.2", status: "alert" },
+          { name: "Asset 1.3", status: "normal" },
+          { name: "Asset 1.4", status: "alert" },
+          { name: "Asset 1.5", status: "normal" },
+          { name: "Asset 1.6", status: "alert" },
+
+        ]
+      },
+      {
+        name: "VSI Crusher",
         children: [
           { name: "Asset 3.1", status: "normal" },
           { name: "Asset 3.2", status: "alert" },
@@ -60,9 +84,9 @@ const Layout = () => {
   const location = useLocation();
 
   return (
-    <div className="flex h-screen bg-slate-50 p-4 dark:bg-slate-950">
+    <div className="flex h-screen bg-slate-50 p-1 dark:bg-slate-950">
       <div className="flex h-full w-full gap-5 overflow-hidden">
-        <div className="flex flex-col justify-between h-full min-w-[270px] overflow-y-auto rounded-xl bg-slate-900">
+        <div className="flex flex-col justify-between h-100 min-w-[290px] overflow-y-auto rounded-xl mt-3 ml-3 mb-3 bg-slate-900">
           <div>
             <div className="mt-4 flex flex-col gap-3 p-6">
               <div className="h-7">
@@ -131,7 +155,7 @@ const Layout = () => {
           </div>
         </div>
 
-        <div className="flex-grow overflow-hidden px-1 py-2 rounded-xl">
+        <div className="flex-grow overflow-hidden px-1 py-2 mr-3 rounded-xl">
           <Outlet />
         </div>
       </div>

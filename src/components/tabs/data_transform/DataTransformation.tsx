@@ -26,7 +26,7 @@ import {
 import TransformDataForm from '../../TrasformDataForm';
 // Helper functions
 const generateColor = (index: number) => {
-  const hue = (index * 137.508) % 360;
+  const hue = ((index + 0.5) * 121.508) % 360;
   return `hsl(${hue}, 70%, 50%)`;
 };
 const workTypes = [
@@ -571,7 +571,7 @@ const DataTransfer: React.FC = () => {
       <div className='flex gap-4 '>
         <Card className="w-full mx-auto mt-4">
           <div className='flex justify-between items-center mb-7'>
-            <h2 className='font-semibold text-lg ml-3 dark:text-slate-50'>Advanced Timewaveform Analysis <span className='text-slate-500 font-normal'>{analysisName && `- ${analysisName}`}</span></h2>
+            <h2 className='font-semibold text-lg ml-3 dark:text-slate-50'>Advanced Timewaveform Analysis <span className='text-slate-500 dark:text-slate-400  font-normal'>{analysisName && `- ${analysisName}`}</span></h2>
 
             <div className="inline-flex rounded-md shadow-sm">
               <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -607,8 +607,8 @@ const DataTransfer: React.FC = () => {
                       type="button"
                       onClick={() => toggleAxisVisibility(axis)}
                       className={`px-4 py-2 text-sm font-medium border ${visibleAxes[axis]
-                        ? 'bg-slate-50 text-slate-900 border-slate-200 hover:bg-slate-100 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
-                        : 'bg-white text-slate-300 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
+                       ? 'bg-gray-200 text-slate-900 border-gray-200 hover:bg-gray-300 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
+                      : 'bg-white text-slate-400 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
                         } ${axis === 'x' ? 'rounded-l-lg' : axis === 'z' ? 'rounded-r-lg' : ''}`}
                     >
                       {axis.toUpperCase()}-Axis
@@ -743,7 +743,7 @@ const DataTransfer: React.FC = () => {
             <Tabs defaultValue="tab1">
               <div className='flex item-center place-items-center justify-between'>
                 <div>
-                  <TabsList variant="solid">
+                  <TabsList className='p-1.5' variant="solid">
                     <TabsTrigger className='text-base' value="tab1"><FoldHorizontal className="w-4 h-4 mr-2"></FoldHorizontal>Add Position Markers</TabsTrigger>
                     <TabsTrigger className='text-base' value="tab2"><IndentIncrease className="w-4 h-4 mr-2"></IndentIncrease>Add Thresholds</TabsTrigger>
                   </TabsList>

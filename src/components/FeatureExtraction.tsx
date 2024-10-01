@@ -448,7 +448,7 @@ const FeatureExtraction: React.FC = () => {
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
       <Card className="w-full mx-auto mt-4">
         <div className='flex justify-between items-center mb-7'>
-          <h2 className='font-semibold text-lg ml-3 dark:text-slate-50'>Advanced Spectral Analysis {analysisName && `: ${analysisName}`}</h2>
+          <h2 className='font-semibold text-lg ml-3 dark:text-slate-50'>Advanced Spectral Analysis<span className='text-slate-500 dark:text-slate-400 font-normal'>{analysisName && `- ${analysisName}`}</span></h2>
 
           <div className="inline-flex rounded-md shadow-sm">
             <div className="inline-flex rounded-md shadow-sm" role="group">
@@ -456,9 +456,9 @@ const FeatureExtraction: React.FC = () => {
                 type="button"
                 onClick={() => setDomainType('native')}
                 className={`px-4 py-2 text-sm font-medium border ${domainType === 'native'
-                  ? 'bg-slate-50 text-slate-900 border-slate-200 hover:bg-slate-100 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
-                  : 'bg-white text-slate-300 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
-                  } rounded-l-lg`}
+                  ? 'bg-gray-200 text-slate-900 border-gray-200 hover:bg-gray-300 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
+                  : 'bg-white text-slate-400 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
+              } rounded-l-lg`}
 
 
               >
@@ -468,9 +468,9 @@ const FeatureExtraction: React.FC = () => {
                 type="button"
                 onClick={() => setDomainType('order')}
                 className={`px-4 py-2 text-sm font-medium border ${domainType === 'order'
-                  ? 'bg-slate-50 text-slate-900 border-slate-200 hover:bg-slate-100 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
-                  : 'bg-white text-slate-300 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
-                  } rounded-r-lg`}
+                  ? 'bg-gray-200 text-slate-900 border-gray-200 hover:bg-gray-300 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
+                  : 'bg-white text-slate-400 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
+              } rounded-r-lg`}
               >
                 Order
               </button>
@@ -484,8 +484,8 @@ const FeatureExtraction: React.FC = () => {
                     type="button"
                     onClick={() => toggleAxisVisibility(axis)}
                     className={`px-4 py-2 text-sm font-medium border ${visibleAxes[axis]
-                      ? 'bg-slate-50 text-slate-900 border-slate-200 hover:bg-slate-100 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
-                      : 'bg-white text-slate-300 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
+                      ? 'bg-gray-200 text-slate-900 border-gray-200 hover:bg-gray-300 hover:text-slate-1000 dark:bg-slate-900 dark:text-slate-100 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-50'
+                      : 'bg-white text-slate-400 border-gray-200 hover:bg-gray-50 hover:text-gray-600 dark:bg-transparent dark:text-slate-400 dark:border-none dark:hover:bg-slate-900 dark:hover:text-slate-300'
                       } ${axis === 'x' ? 'rounded-l-lg' : axis === 'z' ? 'rounded-r-lg' : ''}`}
                   >
                     {axis.toUpperCase()}-Axis
@@ -612,7 +612,7 @@ const FeatureExtraction: React.FC = () => {
           <Tabs defaultValue="tab1">
             <div className='flex item-center place-items-center justify-between'>
               <div>
-                <TabsList variant="solid">
+                <TabsList className='p-1.5' variant="solid">
                   <TabsTrigger className='text-base' value="tab1"><FoldHorizontal className="w-4 h-4 mr-2"></FoldHorizontal>Add Frequency Markers</TabsTrigger>
                   <TabsTrigger className='text-base' value="tab2"><IndentIncrease className="w-4 h-4 mr-2"></IndentIncrease>Add Thresholds</TabsTrigger>
                 </TabsList>
@@ -671,11 +671,11 @@ const FeatureExtraction: React.FC = () => {
                 className="space-y-2 text-sm leading-7 text-gray-600 dark:text-gray-500"
               >
                 <div>
-                  <div className="overflow-y-auto mt-2 h-[280px] scrollbar">
+                  <div className="overflow-y-auto mt-2 h-[260px] scrollbar">
                     <table className="w-full border-collapse">
                       <thead className='w-full'>
                         <tr className='bg-slate-50 rounded-lg dark:bg-slate-950'>
-                          <th className="text-left p-2 pl-8 w-[200px]">Name</th>
+                          <th className="text-left p-2 pl-8 w-[200px] rounded-l-lg">Name</th>
                           <th className="text-left p-2 w-[60px]">Order</th>
                           <th className="text-left p-2 w-[140px]">Marker Name</th>
                           <th className="text-left p-2 w-[120px]">Freq (Hz)</th>
@@ -683,12 +683,12 @@ const FeatureExtraction: React.FC = () => {
                           <th className="text-left p-2 w-[100px]">Harmonics</th>
                           <th className="text-left p-2 w-[130px]">Sub-Harmonics</th>
                           <th className="text-left p-2 w-[120px]">Axis</th>
-                          <th className="text-left p-2 w-[100px]">Side Bands</th>
-                          <th className="text-left p-2 w-[100px]">Count</th>
-                          <th className="text-left p-2 w-[100px]">Spacing</th>
-                          <th className="text-left p-2 w-[120px]">Left/RIght</th>
-                          <th className='w-[24px]'></th>
-                          <th className="text-left p-2 border-spacing-5 w-[140px]">Actions</th>
+                          <th className="text-left p-2 w-[100px] dark:bg-slate-900 bg-neutral-100 pl-4 rounded-l-lg">Side Bands</th>
+                          <th className="text-left p-2 w-[80px] dark:bg-slate-900 bg-neutral-100">Count</th>
+                          <th className="text-left p-2 w-[80px] dark:bg-slate-900 bg-neutral-100">Spacing</th>
+                          <th className="text-left p-2 w-[100px] dark:bg-slate-900 bg-neutral-100 rounded-r-lg">Left/Right</th>
+                          
+                          <th className="text-left p-2 border-spacing-5 w-[120px] rounded-r-lg">Actions</th>
                         </tr>
                       </thead>
                       <tbody className='mr-5'>
@@ -820,7 +820,7 @@ const FeatureExtraction: React.FC = () => {
 
 
 
-                              <td></td>
+                              
                               <td className="p-2">
                                 <div className='flex gap-5'>
                                   <Button
