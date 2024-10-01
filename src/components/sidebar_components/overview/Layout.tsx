@@ -60,9 +60,9 @@ const Layout = () => {
   const location = useLocation();
 
   return (
-    <div className="flex h-screen bg-slate-50 p-4 dark:bg-slate-950">
+    <div className="flex h-screen bg-slate-50 p-1 dark:bg-slate-950">
       <div className="flex h-full w-full gap-5 overflow-hidden">
-        <div className="flex flex-col justify-between h-full min-w-[270px] overflow-y-auto rounded-xl bg-slate-900">
+        <div className="flex flex-col justify-between h-100 min-w-[290px] overflow-y-auto rounded-xl mt-3 ml-3 mb-3 bg-slate-900">
           <div>
             <div className="mt-4 flex flex-col gap-3 p-6">
               <div className="h-7">
@@ -131,7 +131,7 @@ const Layout = () => {
           </div>
         </div>
 
-        <div className="flex-grow overflow-hidden px-1 py-2 rounded-xl">
+        <div className="flex-grow overflow-hidden px-1 py-2 mr-3 rounded-xl">
           <Outlet />
         </div>
       </div>

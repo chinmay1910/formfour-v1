@@ -96,8 +96,8 @@ const Dashboard = () => {
 
   return (
     <div className="">
-      <div className="flex w-full h-full overflow-hidden	">
-        <div className="flex flex-col gap-1 ml-2 mb-6 w-[40%]">
+      <div className="flex w-full h-full overflow-hidden">
+        <div className="flex flex-col gap-1 ml-2 mt-4 mb-6 w-[40%]">
           <div className="flex gap-3 align-end items-end pt-1">
             <h3 className=" font-semibold  text-gray-900 dark:text-gray-50 text-3xl">
               Asset Name
@@ -113,8 +113,8 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="flex-col flex-grow justify-items-start ">
-          <div className="mt-[-8px] mb-3 ">
-            <Callout className="p-2" title="AWS Credit Alert" icon={RiErrorWarningFill}>
+          <div className="mb-3 ">
+            <Callout variant="warning" className="py-2 px-3" title="High Vibration Alert"  icon={RiErrorWarningFill}>
             </Callout>
           </div>
           <div>
@@ -123,7 +123,7 @@ const Dashboard = () => {
                 <Button
                   variant="ghost"
                   key={index}
-                  className={`tab-button text-slate-600 text-base flex items-center gap-2 ${activeTab === index ? "bg-slate-200 text-slate-800 dark:bg-slate-700 dark:hover:bg-slate-700" : ""
+                  className={`tab-button text-slate-500 hover:bg-gray-200 hover:text-slate-800 text-base dark:hover:bg-slate-700 dark:hover:text-slate-100 flex items-center gap-2 ${activeTab === index ? "bg-gray-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700" : ""
                     }`}
                   onClick={() => handleTabClick(index)}
                 >

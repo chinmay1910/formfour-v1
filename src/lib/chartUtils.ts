@@ -9,6 +9,31 @@ export const chartColors = {
     fill: "fill-blue-500",
     text: "text-blue-500",
   },
+  red: {
+    bg: "bg-rose-400",
+    stroke: "stroke-rose-400",
+    fill: "fill-rose-400",
+    text: "text-rose-400",
+  },
+  rose: {
+    bg: "bg-rose-300",
+    stroke: "stroke-rose-300",
+    fill: "fill-rose-300",
+    text: "text-rose-300",
+  },
+  
+  rose8: {
+    bg: "bg-rose-800",
+    stroke: "stroke-rose-800",
+    fill: "fill-rose-800",
+    text: "text-rose-800",
+  },
+  slate: {
+    bg: "bg-slate-300",
+    stroke: "stroke-slate-300",
+    fill: "fill-slate-300",
+    text: "text-slate-300",
+  },
   emerald: {
     bg: "bg-emerald-500",
     stroke: "stroke-emerald-500",
