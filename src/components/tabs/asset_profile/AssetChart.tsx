@@ -502,7 +502,7 @@ const AssetChart = () => {
                       'Vitainvest Core',
                       'iShares Tech Growth',
                     ]}
-                    colors={['blue', 'violet', 'fuchsia']}
+                    colors={['rose8', 'red', 'rose']}
                     valueFormatter={valueFormatter}
                     yAxisWidth={60}
                     onValueChange={() => { }}
