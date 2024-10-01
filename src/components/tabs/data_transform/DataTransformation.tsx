@@ -41,9 +41,11 @@ const workTypes = [
 
 
 const users = [
-  { value: 'user1', label: 'Alice Johnson' },
-  { value: 'user2', label: 'Bob Smith' },
-  { value: 'user3', label: 'Charlie Davis' },
+  { value: 'user1', label: 'Mr. Chinmay Awade' },
+  { value: 'user2', label: 'Mr. Jayesh Barsole' },
+  { value: 'user3', label: 'Mr. Sushil Kulkarni' },
+  { value: 'user4', label: 'Mr. Pavan Awade' },
+  { value: 'user5', label: 'Mr. Omkar Awade' },
   // Add more users as needed
 ];
 
@@ -976,7 +978,7 @@ const DataTransfer: React.FC = () => {
                             <th className="text-left p-2 w-[100px]">Actions</th>
                           </tr>
                         </thead>
-                        <tbody className='mr-5 overflow-y-auto  h-[280px] scrollbar'>
+                        <tbody className='mr-5'>
                           {steppedLineInputs.map((input, index) => (
                             <tr key={index}>
                               <td className="p-2">
@@ -1016,8 +1018,8 @@ const DataTransfer: React.FC = () => {
                           ))}
                         </tbody>
                       </table>
-                      <Button variant="light" onClick={addSteppedLineInput}>Add Row</Button>
-                      <Button variant="primary" onClick={generateSteppedLineData}>Generate Stepped Line</Button>
+                      <Button variant="light" className="ml-4" onClick={addSteppedLineInput}>Add Row</Button>
+                      <Button variant="primary" className="ml-4" onClick={generateSteppedLineData}>Generate Stepped Line</Button>
                     </div>
                   </div>
                 </TabsContent>

@@ -88,6 +88,7 @@ export const chartColors = {
   }
 }
 
+
 export type AvailableChartColorsKeys = keyof typeof chartColors
 
 export const AvailableChartColors: AvailableChartColorsKeys[] = Object.keys(
