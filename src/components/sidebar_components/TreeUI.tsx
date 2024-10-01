@@ -123,13 +123,14 @@ const DashboardLayout = ({ children }) => {
   // Sample data with 3 layers: Factory > Sections > Assets
   const sampleData = [
     {
-      name: "Factory A",
+      name: "AGCM Sangali",
       children: [
         {
-          name: "Section 1",
+          name: "VSI Crusher A",
           children: [
-            { name: "Asset 1.1", status: "normal" },
-            { name: "Asset 1.2", status: "alert" },
+            { name: "Main Rotor", status: "normal" },
+            { name: "Pulley System", status: "alert" },
+            { name: "Motor A", status: "normal" },
           ]
         },
         {

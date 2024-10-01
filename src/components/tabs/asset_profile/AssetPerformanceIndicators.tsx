@@ -71,8 +71,8 @@ const AssetPerformanceIndicators = () => {
         <div className="flex gap-4 flex-grow">
                 <div className="flex gap-3 w-[45%]">
                     <div className="flex gap-7">
-                        <div>
-                            <img src={motorImage} alt="Motor" style={{ height: '140px' }} />
+                        <div className='rounded-lg'>
+                            <img src={motorImage} alt="Motor" style={{ height: '140px', borderRadius: '8px' }} className='rounded-lg' />
                         </div>
                         <div className="flex flex-col gap-3">
                             <div>

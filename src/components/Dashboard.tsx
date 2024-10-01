@@ -9,12 +9,14 @@ import ConditionAssessment from "./ConditionAssessment";
 import { FiPhone } from "react-icons/fi";
 import { Callout } from "../common/Callout";
 import { RiErrorWarningFill } from '@remixicon/react';
-import {  TrendingUp,  GitCompareArrows, TriangleAlert, Sigma, Gauge } from "lucide-react";
+import { TrendingUp, GitCompareArrows, TriangleAlert, Sigma, Gauge } from "lucide-react";
 
 import { Badge } from "../common/Badge";
 import { Button } from "../common/Button";
 import { DateRangePicker, DateRange } from "../common/DatePicker";
 import React from "react";
+import Marquee from "../common/Marquee";
+
 
 
 
@@ -113,9 +115,20 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="flex-col flex-grow justify-items-start ">
-          <div className="mb-3 ">
-            <Callout variant="warning" className="py-2 px-3" title="High Vibration Alert"  icon={RiErrorWarningFill}>
-            </Callout>
+          <div className="mb-2.5 mx-2">
+            <div>
+              <Marquee speed={25}>
+                <Callout
+                  variant="warning"
+                  className="py-2 px-3"
+                  title="High Vibration Alert: Suspected Dynamic Imbalance in NDE"
+                  icon={RiErrorWarningFill}
+                />
+              </Marquee>
+
+            </div>
+
+
           </div>
           <div>
             <div className="tab-list flex  gap-3 my-2">
@@ -123,7 +136,7 @@ const Dashboard = () => {
                 <Button
                   variant="ghost"
                   key={index}
-                  className={`tab-button text-slate-500 hover:bg-gray-200 hover:text-slate-800 text-base dark:hover:bg-slate-700 dark:hover:text-slate-100 flex items-center gap-2 ${activeTab === index ? "bg-gray-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700" : ""
+                  className={`tab-button  text-slate-500 hover:bg-gray-200 hover:text-slate-800 text-base dark:hover:bg-slate-700 dark:hover:text-slate-100 flex items-center gap-2 ${activeTab === index ? "bg-gray-200 text-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700" : ""
                     }`}
                   onClick={() => handleTabClick(index)}
                 >

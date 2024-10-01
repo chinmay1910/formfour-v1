@@ -11,37 +11,61 @@ import { ChartPie, LayoutList, FileInput } from "lucide-react";
 import { UserProfileDesktop } from "../../UserProfile";
 const sampleData = [
   {
-    name: "Factory A (32)",
+    name: "AGCM Sangali (32)",
     children: [
       {
-        name: "Section 1",
+        name: "VSI Crusher A",
         children: [
-          { name: "Asset 1.1", status: "normal" },
-          { name: "Asset 1.2", status: "alert" },
-          { name: "Asset 1.3", status: "normal" },
-          { name: "Asset 1.4", status: "alert" },
-          { name: "Asset 1.5", status: "normal" },
-          { name: "Asset 1.6", status: "alert" },
+          { name: "Main Rotor", status: "normal" },
+          { name: "Pulley DE", status: "alert" },
+          { name: "Motor Housing", status: "normal" },
+          { name: "Main Body", status: "alert" },
+          { name: "Structure Base", status: "normal" },
+          { name: "Hopper Top", status: "alert" },
         ]
       },
       {
-        name: "Section 2",
+        name: "Vibratory Screen",
         children: [
-          { name: "Asset 2.1", status: "warning" },
-          { name: "Asset 2.2", status: "offline" },
-          { name: "Asset 1.3", status: "normal" },
-          { name: "Asset 1.4", status: "alert" },
-          { name: "Asset 1.5", status: "normal" },
-          { name: "Asset 1.6", status: "alert" },
+          { name: "RHS Top", status: "warning" },
+          { name: "RHS Bottom", status: "offline" },
+          { name: "LHS Top", status: "normal" },
+          { name: "LHS Bottom", status: "alert" },
+          { name: "Base Structure", status: "normal" },
+          { name: "Motor Drive", status: "alert" },
         ]
       }
     ]
   },
   {
-    name: "Factory B",
+    name: "AGCM Pune",
     children: [
       {
-        name: "Section 3",
+        name: "Jaw Crusher",
+        children: [
+          { name: "Asset 3.1", status: "normal" },
+          { name: "Asset 3.2", status: "alert" },
+          { name: "Asset 1.3", status: "normal" },
+          { name: "Asset 1.4", status: "alert" },
+          { name: "Asset 1.5", status: "normal" },
+          { name: "Asset 1.6", status: "alert" },
+
+        ]
+      },
+      {
+        name: "Cone Crusher",
+        children: [
+          { name: "Asset 3.1", status: "normal" },
+          { name: "Asset 3.2", status: "alert" },
+          { name: "Asset 1.3", status: "normal" },
+          { name: "Asset 1.4", status: "alert" },
+          { name: "Asset 1.5", status: "normal" },
+          { name: "Asset 1.6", status: "alert" },
+
+        ]
+      },
+      {
+        name: "VSI Crusher",
         children: [
           { name: "Asset 3.1", status: "normal" },
           { name: "Asset 3.2", status: "alert" },
