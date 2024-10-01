@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  
   "scripts": {
     "GENERATE_SOURCEMAP": "false",
     "dev": "vite",
@@ -40,6 +39,7 @@
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "2.0",
     "@types/react-beautiful-dnd": "^13.1.8",
+    "axios": "^1.7.7",
     "chart.js": "^4.4.4",
     "clsx": "^2.1.1",
     "d3": "^7.9.0",

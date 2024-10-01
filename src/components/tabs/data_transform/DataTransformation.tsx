@@ -511,9 +511,12 @@ const DataTransfer: React.FC = () => {
     setVisibleAxes(prev => ({ ...prev, [axis]: !prev[axis] }));
   }, []);
 
+  const [uploadedFile, setUploadedFile] = useState(null);
+
   const handleFileUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      setUploadedFile(file);
       const reader = new FileReader();
       reader.onload = (e) => {
         const content = e.target?.result as string;
@@ -1059,6 +1062,7 @@ const DataTransfer: React.FC = () => {
                         onSubmit={handleFormSubmit}
                         workTypes={workTypes}
                         priorities={priority}
+                        uploadedFile={uploadedFile}
                         users={users} // Pass users to WOForm
                         onClose={function (): void {
                           throw new Error('Function not implemented.');

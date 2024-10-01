@@ -7,6 +7,7 @@ import { Label } from '../common/Label';
 import { RadioCardGroup, RadioCardIndicator, RadioCardItem } from '../common/RadioCardGroup';
 import { Badge } from '../common/Badge';
 import { SelectNative } from '../common/SelectNative';
+import axios from 'axios';
 // If @tremor/react has individual DatePicker components, you can import them here.
 // Otherwise, we'll use standard HTML date inputs.
 
@@ -17,9 +18,10 @@ interface WOFormProps {
   priorities: { value: string; label: string }[];
   users: { value: string; label: string }[];
   onClose: () => void; // Add this new prop
+  uploadedFile: File | null; 
 }
 
-const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workTypes, priorities, users, onClose }) => {
+const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workTypes, priorities, users, onClose, uploadedFile }) => {
   const [formData, setFormData] = useState<Task>(initialData || {
     title: '',
     description: '',
@@ -69,11 +71,25 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted");
-    onSubmit(formData);
-    console.log("onSubmit called");
-    onClose();
-    console.log("onClose called");
+    // console.log("Form submitted");
+    // onSubmit(formData);
+    // console.log("onSubmit called");
+    // onClose();
+    // console.log("onClose called");
+    const formData = new FormData();
+  formData.append('file', uploadedFile);
+  formData.append('selectedOption', selectedOption);
+  formData.append('filterSize', inputValues.filterSize);
+  formData.append('windowType', inputValues.windowType);
+  formData.append('overlap', inputValues.overlap);
+
+  axios.post('http://localhost:5000/api/transform-data', formData)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   };
 
 
@@ -112,18 +128,13 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
     ]
 
   const [inputValues, setInputValues] = useState<InputValues>({
-    order: 1,
-    cutIn: 1,
-    cutOut: 1,
+    filterSize: "256",
+    windowType: "hanning",
+    overlap: "50",
   });
 
   const handleInputChange = (id: string) => (value: number | string) => {
-    if (typeof value === 'number') {
-      setInputValues(prevValues => ({
-        ...prevValues,
-        [id]: value
-      }));
-    }
+    setInputValues((prevValues) => ({ ...prevValues, [id]: value }));
   };
 
   return (
@@ -219,7 +230,8 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
               /> */}
               <div className="mx-auto gap-2 flex max-w-xs flex-col">
                 <Label className='ml-2' htmlFor="age1">Select Size</Label>
-                <SelectNative>
+                <SelectNative value={inputValues.filterSize}
+  onChange={(e) => handleInputChange("filterSize")(e.target.value)}>
 
                   <option value="256">256</option>
                   <option value="512">512</option>
@@ -234,7 +246,8 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
             <div className="w-1/3">
             <div className="mx-auto gap-2 flex max-w-xs flex-col">
                 <Label className='ml-2' htmlFor="age1">Select Window Type</Label>
-                <SelectNative>
+                <SelectNative value={inputValues.windowType}
+  onChange={(e) => handleInputChange("windowType")(e.target.value)}>
 
                   <option value="hanning">Hanning</option>
                   <option value="hamming">Hamming</option>
@@ -246,7 +259,8 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
             <div className="basis-1/3">
             <div className="mx-auto gap-2 flex max-w-xs flex-col">
                 <Label className='ml-2' htmlFor="age1">Select Overlap</Label>
-                <SelectNative>
+                <SelectNative value={inputValues.overlap}
+  onChange={(e) => handleInputChange("overlap")(e.target.value)}>
 
                   <option value="0">0%</option>
                   <option value="10">10%</option>
@@ -267,7 +281,7 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
             className="mt-4"
             type=""
             variant="primary"
-            onClick={() => setSelectedOption("base-performance")}
+            onClick={handleSubmit}
           >
             Transform Data
           </Button>
