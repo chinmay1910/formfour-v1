@@ -978,7 +978,7 @@ const DataTransfer: React.FC = () => {
                             <th className="text-left p-2 w-[100px]">Actions</th>
                           </tr>
                         </thead>
-                        <tbody className='mr-5 overflow-y-auto  h-[280px] scrollbar'>
+                        <tbody className='mr-5'>
                           {steppedLineInputs.map((input, index) => (
                             <tr key={index}>
                               <td className="p-2">
