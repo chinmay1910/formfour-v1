@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "../common/Button";
 import FLabel from './FLabel';
 import { Label } from '../common/Label';
+import axios from 'axios';
 import { RadioCardGroup, RadioCardIndicator, RadioCardItem } from '../common/RadioCardGroup';
 import { Badge } from '../common/Badge';
 // If @tremor/react has individual DatePicker components, you can import them here.
@@ -16,9 +17,10 @@ interface WOFormProps {
   priorities: { value: string; label: string }[];
   users: { value: string; label: string }[];
   onClose: () => void; // Add this new prop
+  uploadedFile: File | null; 
 }
 
-const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workTypes, priorities, users, onClose }) => {
+const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workTypes, priorities, users, onClose,uploadedFile }) => {
   const [formData, setFormData] = useState<Task>(initialData || {
     title: '',
     description: '',
@@ -68,11 +70,30 @@ const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workType
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted");
-    onSubmit(formData);
-    console.log("onSubmit called");
-    onClose();
-    console.log("onClose called");
+    const formData = new FormData();
+formData.append('filterType', selectedOption);
+formData.append('order', inputValues.order.toString());
+formData.append('cutIn', inputValues.cutIn.toString());
+formData.append('cutOut', inputValues.cutOut.toString());
+formData.append('file', uploadedFile);
+axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' })
+.then((response) => {
+  const blob = new Blob([response.data], { type: 'application/json' });
+  const url = window.URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${selectedOption}-filtered.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
+
+  console.log('Download initiated for filtered JSON file.');
+})
+.catch((error) => {
+  console.error('Error during file download:', error);
+});
   };
 
 
@@ -86,19 +107,19 @@ const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workType
   }[] = [
       {
         label: "Low Pass Filter",
-        value: "low-pass-filter",
+        value: "lowpass",
         description: "Remove high frequency noise.",
         isRecommended: true,
       },
       {
         label: "High Pass Filter",
-        value: "high-pass-filter",
+        value: "highpass",
         description: "Remove low frequency content.",
         isRecommended: false,
       },
       {
         label: "Band Pass Filter ",
-        value: "band-pass-filter",
+        value: "band.toString()pass",
         description: "Create a pass band for analysis.",
         isRecommended: false,
       },
@@ -122,7 +143,7 @@ const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workType
   return (
     <div>
       <FLabel id={"filtername"} label={"Filter Name"} placeholder=" " />
-      <form>
+      <form onSubmit={handleSubmit}>
         <fieldset className="space-y-3 my-4">
         <Label htmlFor="database" className="font-medium my-1 ml-1">
             Select Type of Filter
@@ -207,9 +228,9 @@ const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workType
         <div className="flex items-center justify-between">
           <Button
             className="mt-4"
-            type=""
+            type="submit"
             variant="primary"
-            onClick={() => setSelectedOption("base-performance")}
+            // onClick={() => setSelectedOption("base-performance")}
           >
             Filter Data
           </Button>

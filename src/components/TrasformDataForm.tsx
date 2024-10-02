@@ -83,13 +83,26 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
   formData.append('windowType', inputValues.windowType);
   formData.append('overlap', inputValues.overlap);
 
-  axios.post('http://localhost:5000/api/transform-data', formData)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  axios.post('http://localhost:5000/api/transform-data', formData, {responseType: 'blob', })
+  .then((response) => {
+    // Create a Blob from the response data
+    const blob = new Blob([response.data], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    
+    // Create an anchor element and trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${selectedOption}-transformed.json`; // Dynamic filename
+    document.body.appendChild(a);
+    a.click();
+    a.remove(); // Remove the element after downloading
+    window.URL.revokeObjectURL(url); // Free up memory
+
+    console.log('Download initiated for JSON file.');
+  })
+  .catch((error) => {
+    console.error('Error during file download:', error);
+  });
   };
 
 

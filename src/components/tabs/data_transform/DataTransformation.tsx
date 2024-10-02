@@ -1052,6 +1052,7 @@ const DataTransfer: React.FC = () => {
                         onSubmit={handleFormSubmit}
                         workTypes={workTypes}
                         priorities={priority}
+                        uploadedFile={uploadedFile}
                         users={users} // Pass users to WOForm
                         onClose={function (): void {
                           throw new Error('Function not implemented.');
