@@ -69,6 +69,8 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
     }));
   };
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // console.log("Form submitted");
@@ -82,6 +84,8 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
   formData.append('filterSize', inputValues.filterSize);
   formData.append('windowType', inputValues.windowType);
   formData.append('overlap', inputValues.overlap);
+
+  setLoading(true);
 
   axios.post('http://localhost:5000/api/transform-data', formData, {responseType: 'blob', })
   .then((response) => {
@@ -102,7 +106,10 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
   })
   .catch((error) => {
     console.error('Error during file download:', error);
-  });
+  })
+  .finally(()=>{
+    setLoading(false);
+  })
   };
 
 
@@ -295,8 +302,9 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
             type=""
             variant="primary"
             onClick={handleSubmit}
+            disabled={loading}
           >
-            Transform Data
+            {loading? 'Transforming...': 'Transform Data'}
           </Button>
 
           <Button

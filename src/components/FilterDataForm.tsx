@@ -68,32 +68,42 @@ const FilterDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workType
     }));
   };
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
-formData.append('filterType', selectedOption);
-formData.append('order', inputValues.order.toString());
-formData.append('cutIn', inputValues.cutIn.toString());
-formData.append('cutOut', inputValues.cutOut.toString());
-formData.append('file', uploadedFile);
-axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' })
-.then((response) => {
-  const blob = new Blob([response.data], { type: 'application/json' });
-  const url = window.URL.createObjectURL(blob);
-  
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${selectedOption}-filtered.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  window.URL.revokeObjectURL(url);
+    formData.append('filterType', selectedOption);
+    formData.append('order', inputValues.order.toString());
+    formData.append('cutIn', inputValues.cutIn.toString());
+    formData.append('cutOut', inputValues.cutOut.toString());
+    formData.append('sampleRate', inputValues.sampleRate.toString());
+    formData.append('file', uploadedFile);
 
-  console.log('Download initiated for filtered JSON file.');
-})
-.catch((error) => {
-  console.error('Error during file download:', error);
-});
+  setLoading(true);
+
+  axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' })
+    .then((response) => {
+      const blob = new Blob([response.data], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${selectedOption}-filtered.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+
+      console.log('Download initiated for filtered JSON file.');
+      })
+      .catch((error) => {
+        console.error('Error during file download:', error);
+      })
+      .finally(() => {
+        // Set loading to false when the request is complete (success or error)
+        setLoading(false);
+      });
   };
 
 
@@ -129,6 +139,7 @@ axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' 
     order: 1,
     cutIn: 1,
     cutOut: 1,
+    sampleRate: 1000
   });
 
   const handleInputChange = (id: string) => (value: number | string) => {
@@ -221,6 +232,17 @@ axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' 
                 onChange={handleInputChange("cutOut")}
               />
             </div>
+            <div className="basis-1/3">
+              <FLabel
+                id="sampleRate"
+                label="Sample rate"
+                type="number"
+                min={0}
+                max={10000}
+                value={inputValues.sampleRate}
+                onChange={handleInputChange("sampleRate")}
+              />
+            </div>
           </div>
 
         </fieldset>
@@ -230,9 +252,10 @@ axios.post('http://localhost:5000/api/filter', formData, { responseType: 'blob' 
             className="mt-4"
             type="submit"
             variant="primary"
+            disabled={loading}
             // onClick={() => setSelectedOption("base-performance")}
           >
-            Filter Data
+            {loading ? "Filtering..." : "Filter Data"}
           </Button>
 
           <Button
