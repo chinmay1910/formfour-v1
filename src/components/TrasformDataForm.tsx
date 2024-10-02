@@ -129,7 +129,7 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
 
   const [inputValues, setInputValues] = useState<InputValues>({
     filterSize: "256",
-    windowType: "hanning",
+    windowType: "hann",
     overlap: "50",
   });
 
@@ -249,7 +249,7 @@ const TransformDataForm: React.FC<WOFormProps> = ({ initialData, onSubmit, workT
                 <SelectNative value={inputValues.windowType}
   onChange={(e) => handleInputChange("windowType")(e.target.value)}>
 
-                  <option value="hanning">Hanning</option>
+                  <option value="hann">Hanning</option>
                   <option value="hamming">Hamming</option>
                   <option value="rectangular">Rectangular</option>
                   <option value="flat-top">Flat-top</option>
